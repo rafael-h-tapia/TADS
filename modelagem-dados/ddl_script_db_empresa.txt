@@ -1,0 +1,177 @@
+﻿-- Criação do banco de dados
+CREATE DATABASE IF NOT EXISTS DB_EMPRESA;
+USE DB_EMPRESA;
+
+
+-- Tabela Clientes
+CREATE TABLE Clientes (
+    cliente_id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    telefone VARCHAR(20)
+);
+
+
+-- Tabela Pedidos
+CREATE TABLE Pedidos (
+    pedido_id INT PRIMARY KEY,
+    cliente_id INT,
+    data_pedido DATE,
+    valor_total DECIMAL(10, 2),
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id)
+);
+
+
+-- Tabela ItensPedido
+CREATE TABLE ItensPedido (
+    item_id INT PRIMARY KEY,
+    pedido_id INT,
+    produto VARCHAR(100),
+    quantidade INT,
+    preco DECIMAL(10, 2),
+    FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id)
+);
+
+
+-- Inserindo registros na tabela Clientes
+INSERT INTO Clientes (cliente_id, nome, email, telefone) VALUES
+(1, 'João Silva', 'joao.silva@email.com', '123456789'),
+(2, 'Maria Souza', 'maria.souza@email.com', '987654321'),
+(3, 'Carlos Lima', 'carlos.lima@email.com', '456789123');
+
+
+-- Inserindo registros na tabela Pedidos
+INSERT INTO Pedidos (pedido_id, cliente_id, data_pedido, valor_total) VALUES
+(1, 1, '2024-09-01', 250.00),
+(2, 2, '2024-09-02', 150.00),
+(3, 1, '2024-09-03', 350.00),
+(4, 3, '2024-09-04', 400.00),
+(5, 2, '2024-09-05', 500.00),
+(6, 3, '2024-09-06', 600.00),
+(7, 1, '2024-09-07', 700.00),
+(8, 2, '2024-09-08', 800.00),
+(9, 3, '2024-09-09', 900.00),
+(10, 1, '2024-09-10', 1000.00);
+
+
+-- Inserindo registros na tabela ItensPedido 
+INSERT INTO ItensPedido (item_id, pedido_id, produto, quantidade, preco) VALUES
+(1, 1, 'Teclado', 2, 100.00),
+(2, 1, 'Mouse', 1, 50.00),
+(3, 2, 'Monitor', 1, 600.00),
+(4, 2, 'Cabo HDMI', 2, 40.00),
+(5, 3, 'Impressora', 1, 300.00),
+(6, 3, 'Mousepad', 1, 20.00),
+(7, 4, 'SSD', 1, 400.00),
+(8, 4, 'HD Externo', 1, 200.00),
+(9, 5, 'Notebook', 1, 2000.00),
+(10, 5, 'Capa para Notebook', 1, 150.00),
+(11, 6, 'Webcam', 1, 120.00),
+(12, 6, 'Fone de Ouvido', 1, 80.00),
+(13, 7, 'Teclado Mecânico', 1, 300.00),
+(14, 7, 'Mouse Gamer', 1, 150.00),
+(15, 8, 'Monitor Curvo', 1, 1200.00),
+(16, 8, 'Cadeira Gamer', 1, 1000.00),
+(17, 9, 'Mousepad XXL', 1, 70.00),
+(18, 9, 'Teclado RGB', 1, 350.00),
+(19, 10, 'Headset', 1, 400.00),
+(20, 10, 'Monitor 4K', 1, 2400.00);
+
+
+
+
+
+
+
+
+-- Inserindo mais registros na tabela Clientes
+INSERT INTO Clientes (cliente_id, nome, email, telefone) VALUES
+(4, 'Ana Costa', 'ana.costa@email.com', '111223344'),
+(5, 'Pedro Rocha', 'pedro.rocha@email.com', '222334455'),
+(6, 'Fernanda Almeida', 'fernanda.almeida@email.com', '333445566'),
+(7, 'Rafael Seixas', 'rafael.seixas@email.com', '444556677'),
+(8, 'Gabriela Santos', 'gabriela.santos@email.com', '555667788');
+
+
+-- Inserindo mais registros na tabela Pedidos
+INSERT INTO Pedidos (pedido_id, cliente_id, data_pedido, valor_total) VALUES
+(11, 4, '2024-09-11', 1200.00),
+(12, 5, '2024-09-12', 1300.00),
+(13, 6, '2024-09-13', 1400.00),
+(14, 7, '2024-09-14', 1500.00),
+(15, 8, '2024-09-15', 1600.00),
+(16, 4, '2024-09-16', 1700.00),
+(17, 5, '2024-09-17', 1800.00),
+(18, 6, '2024-09-18', 1900.00),
+(19, 7, '2024-09-19', 2000.00),
+(20, 8, '2024-09-20', 2100.00);
+
+
+-- Inserindo mais registros na tabela ItensPedido
+INSERT INTO ItensPedido (item_id, pedido_id, produto, quantidade, preco) VALUES
+(21, 11, 'Smartphone', 1, 1200.00),
+(22, 11, 'Fone Bluetooth', 2, 300.00),
+(23, 12, 'Tablet', 1, 1300.00),
+(24, 12, 'Capa para Tablet', 1, 100.00),
+(25, 13, 'Smartwatch', 1, 800.00),
+(26, 13, 'Carregador Rápido', 1, 200.00),
+(27, 14, 'Notebook Gamer', 1, 1500.00),
+(28, 14, 'Mochila para Notebook', 1, 200.00),
+(29, 15, 'Drone', 1, 1600.00),
+(30, 15, 'Bateria Extra', 2, 300.00),
+(31, 16, 'Monitor 2K', 1, 1700.00),
+(32, 16, 'Suporte para Monitor', 1, 150.00),
+(33, 17, 'Cadeira Ergonômica', 1, 1800.00),
+(34, 17, 'Mouse sem fio', 1, 100.00),
+(35, 18, 'Teclado Mecânico RGB', 1, 900.00),
+(36, 18, 'Mouse Pad XXL RGB', 1, 100.00),
+(37, 19, 'HD Externo 2TB', 1, 400.00),
+(38, 19, 'Webcam Full HD', 1, 250.00),
+(39, 20, 'Projetor', 1, 2100.00),
+(40, 20, 'Tela para Projetor', 1, 400.00);
+
+
+INSERT INTO clientes (cliente_id, nome, email, telefone) VALUES 
+(9, 'Lucas Fernandes', 'lucas.fernandes@email.com', '666778899'),
+(10, 'Juliana Oliveira', 'juliana.oliveira@email.com', '777889900'),
+(11, 'Roberto Nunes', 'roberto.nunes@email.com', '888990011'),
+(12, 'Patrícia Gomes', 'patricia.gomes@email.com', '999001122'),
+(13, 'Vinícius Ribeiro', 'vinicius.ribeiro@email.com', '111112223'),
+(14, 'Marcelo Monteiro', 'marcelo.monteiro@email.com', '222223334'),
+(15, 'Cláudia Mendes', 'claudia.mendes@email.com', '333334445'),
+(16, 'Rodrigo Almeida', 'rodrigo.almeida@email.com', '444445556'),
+(17, 'Camila Carvalho', 'camila.carvalho@email.com', '555556667'),
+(18, 'Fábio Santos', 'fabio.santos@email.com', '666667778'),
+(19, 'Vanessa Pereira', 'vanessa.pereira@email.com', '777778889'),
+(20, 'Renato Matos', 'renato.matos@email.com', '888889900'),
+(21, 'Cristina Lima', 'cristina.lima@email.com', '999990011'),
+(22, 'Leandro Barros', 'leandro.barros@email.com', '000001122'),
+(23, 'Amanda Silva', 'amanda.silva@email.com', '111112234'),
+(24, 'Thiago Correia', 'thiago.correia@email.com', '222223345'),
+(25, 'Débora Andrade', 'debora.andrade@email.com', '333334456'),
+(26, 'Daniel Costa', 'daniel.costa@email.com', '444445567'),
+(27, 'Larissa Gomes', 'larissa.gomes@email.com', '555556678'),
+(28, 'Henrique Vieira', 'henrique.vieira@email.com', '666667789'),
+(29, 'Jéssica Souza', 'jessica.souza@email.com', '777778890'),
+(30, 'Felipe Oliveira', 'felipe.oliveira@email.com', '888889901'),
+(31, 'Natália Teixeira', 'natalia.teixeira@email.com', '999990012'),
+(32, 'Gustavo Ferreira', 'gustavo.ferreira@email.com', '000001123'),
+(33, 'Bianca Marques', 'bianca.marques@email.com', '111112345'),
+(34, 'Matheus Lopes', 'matheus.lopes@email.com', '222223456'),
+(35, 'Carolina Duarte', 'carolina.duarte@email.com', '333334567'),
+(36, 'Sérgio Lima', 'sergio.lima@email.com', '444445678'),
+(37, 'Helena Souza', 'helena.souza@email.com', '555556789'),
+(38, 'André Santos', 'andre.santos@email.com', '666667890'),
+(39, 'Isabella Rodrigues', 'isabella.rodrigues@email.com', '777778901'),
+(40, 'Maurício Castro', 'mauricio.castro@email.com', '888889012'),
+(41, 'Carla Martins', 'carla.martins@email.com', '999990123'),
+(42, 'Ricardo Gonçalves', 'ricardo.goncalves@email.com', '000001234'),
+(43, 'Mariana Costa', 'mariana.costa@email.com', '111112456'),
+(44, 'Bruno Pereira', 'bruno.pereira@email.com', '222223567'),
+(45, 'Paula Almeida', 'paula.almeida@email.com', '333334678'),
+(46, 'Leonardo Carvalho', 'leonardo.carvalho@email.com', '444445789'),
+(47, 'Tânia Santos', 'tania.santos@email.com', '555556890'),
+(48, 'Eduardo Fernandes', 'eduardo.fernandes@email.com', '666667901'),
+(49, 'Michele Borges', 'michele.borges@email.com', '777778012'),
+(50, 'Bruna Lima', 'bruna.lima@email.com', '888889123'),
+(51, 'Rogério Costa', 'rogerio.costa@email.com', '999990234');
